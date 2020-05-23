@@ -37,9 +37,12 @@ import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
-
+import { LocationService } from './services/location.service';
+import { UserService } from './services/user.service';
+import { FormpostService } from './services/formpost.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { baseURL } from './shared/baseurl';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { baseURL } from './shared/baseurl';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -76,13 +80,17 @@ import { baseURL } from './shared/baseurl';
     HttpClientModule
   ],
   entryComponents: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService,
     ProcessHTTPMsgService,
+    LocationService,
+    UserService,
+    FormpostService,
     {provide: 'baseURL', useValue: baseURL}
   ],
   bootstrap: [AppComponent]

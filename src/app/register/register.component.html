@@ -1,0 +1,76 @@
+<div fxFlex fxFlexOffset="20px" class="form-size">
+  <p>{{ registerForm.value | json }} {{ registerForm.status | json }}</p>
+
+  <form novalidate [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <p *ngIf="!flag">
+      <mat-form-field class="half-width">
+        <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+        <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+        <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
+      </mat-form-field>
+    </p>
+    <p *ngIf="!flag">
+      <mat-form-field class="half-width">
+        <input matInput formControlName="username" placeholder="User Name" type="text" required>
+        <mat-error *ngIf="formErrors.username">{{formErrors.username}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <input matInput formControlName="password" placeholder="Password" type="password" required>
+        <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+      </mat-form-field>
+    </p>
+    <p *ngIf="!flag">
+      <mat-form-field class="half-width">
+        <input matInput formControlName="email" placeholder="Email" type="text" required>
+        <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+      </mat-form-field>
+      <mat-form-field class="half-width">
+        <input matInput formControlName="phno" placeholder="Ph. Number" type="tel" required>
+        <mat-error *ngIf="formErrors.phno">{{formErrors.phno}}</mat-error>
+      </mat-form-field>
+    </p>
+    <table class="form-size" *ngIf="!flag">
+      <tr>
+      <td>
+        <mat-select placeholder="State" formControlName="state" class="full-width">
+          <mat-option *ngFor="let state of states" [value]="state">
+            {{ state }}
+          </mat-option>
+        </mat-select>
+      </td>
+      <td>
+        <mat-select placeholder="City" formControlName="city" class="full-width">
+          <mat-option *ngFor="let city of all[registerForm.value.state]" [value]="city">
+            {{ city }}
+          </mat-option>
+        </mat-select>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <mat-select placeholder="Class" formControlName="grade" class="full-width">
+          <mat-option *ngFor="let grade of grades" [value]="grade">
+            {{ grade }}
+          </mat-option>
+        </mat-select>
+      </td>
+      <td>
+        <mat-select placeholder="Board" formControlName="board" class="full-width">
+          <mat-option *ngFor="let board of boards" [value]="board">
+            {{ board }}
+          </mat-option>
+        </mat-select>
+      </td>
+      </tr>
+    </table>
+    <button mat-button class="background-primary text-floral-white" (click)="onPartial()" *ngIf="!flag">Submit</button>
+    <mat-form-field class="full-width" *ngIf ="flag">
+      <input matInput formControlName="otp" placeholder="Enter OTP" type="password" required>
+      <mat-error *ngIf="formErrors.otp">{{formErrors.otp}}</mat-error>
+    </mat-form-field>
+    <button type="submit" mat-button class="background-primary text-floral-white" *ngIf ="flag">Verify OTP</button>
+  </form>
+</div>

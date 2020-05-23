@@ -19,3 +19,12 @@ $background-moredark: #4527A0;
 .active {
     background: $background-moredark;
 }
+
+.example-button-row {
+    display: table-cell;
+}
+  
+.example-button-row button {
+display: table-cell;
+margin-right: 8px;
+}
