@@ -17,7 +17,7 @@ export class FormpostService {
   sendPhoneNo(phno: String) {
     
     const obj = {
-      to: phno
+      "to": phno
     }
     console.log(obj);
     const httpOptions = {
@@ -25,39 +25,57 @@ export class FormpostService {
         'Content-Type':  'application/json'
       })
     };
-    return this.http.post<any>("https://education4all.herokuapp.com/sendSMS", obj)
-      .pipe(catchError(this.processHTTPMsgService.handleError));
+    return this.http.post<any>("https://education4all.herokuapp.com/sendSMS", obj, httpOptions);
   }
-  verifyOTP(otp: String): Observable<any> {
-    const obj = {
-      userCode: otp
-    };
+  verifyOTP(obj = {}): Observable<any> {
+    console.log(obj, "hdsgh");
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })
     };
-    return this.http.post<any>("https://education4all.herokuapp.com/otpVerify", obj)
-      .pipe(catchError(this.processHTTPMsgService.handleError));
+    return this.http.post<any>("https://education4all.herokuapp.com/otpVerify", obj, httpOptions);
   };
-  postForm(form: Register){
+  postForm(data: Register):Observable<any> {   
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
     const obj = {
-        "userName": form.username,
-        "password": form.password,
-        "level": "1",
-        "phone": form.phno,
-        "class": form.grade,
-        "board": form.board
-      };
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type':  'application/json'
-        })
-      };
-    // console.log(obj);
-    this.http.post<any>("https://localhost:3000/register", obj, httpOptions)
-    .subscribe(data => 
-      console.log(data)
-    );
+      "userName": data.username,
+      "password": data.password,
+      "level": "1",
+      "phone": data.phno,
+      "class": data.grade,
+      "board": data.board
+    }
+    console.log(obj);
+    return this.http.post<any>("https://education4all.herokuapp.com/register", obj, httpOptions);
   };
+  login(data): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    const obj = {
+      "userName": data.username,
+      "password": data.password,
+      "level": "1"
+    };
+    return this.http.post<any>("https://education4all.herokuapp.com/login", obj, httpOptions);
+  };
+  
+  show(): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'authorization': 'Bearer ' + localStorage.token
+      })
+    };
+
+    return this.http.get<any>("https://education4all.herokuapp.com/showUser", httpOptions);
+  };
+
 }

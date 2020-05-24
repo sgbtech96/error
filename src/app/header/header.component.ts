@@ -10,6 +10,7 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class HeaderComponent implements OnInit {
 
+  isLogged: Boolean = localStorage.token!="0";
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -20,5 +21,11 @@ export class HeaderComponent implements OnInit {
   }
   openRegisterForm() {
     this.dialog.open(RegisterComponent, {width: '500px', height: '450px'});
+  }
+  logOutUser()
+  {
+    localStorage.token = 0;
+    this.isLogged = false;
+    location.reload();
   }
 }

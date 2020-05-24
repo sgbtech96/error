@@ -26,7 +26,10 @@ export class RegisterComponent implements OnInit {
   states: string[];
   cities: string[];
   all: {};
-  flag: string;
+  flag = false;
+  isCorrect = false;
+  success = false;
+  failure = false;
 
   formErrors = {
     'firstname': '',
@@ -89,8 +92,29 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.newUser = this.registerForm.value;
     
-    // const isGood = this.formpostService.verifyOTP(this.registerForm.value.otp);
-    this.formpostService.postForm(this.newUser);
+    // console.log(this.formpostService.sendPhoneNo(this.newUser.phno));
+    this.formpostService.verifyOTP({"to": this.newUser.phno, "userCode": this.newUser.otp})
+    .subscribe((data) => {
+      // console.log(data.message);
+      if(data.message)
+      {
+        console.log("inside");
+          this.formpostService.postForm(this.newUser)
+        .subscribe((data)=>{
+          console.log(data);
+          this.success = true;
+        });
+      }
+      else
+      {
+        console.log("outside");
+        console.log("Invalid OTP!")
+        this.failure = true;
+      }
+    });
+
+    
+    
     // if(isGood)
     // {
     //   this.formpostService.postForm(this.registerForm.value);
@@ -111,8 +135,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onPartial() {
-    this.formpostService.sendPhoneNo(this.registerForm.value.phno);
-    this.flag = 'set';
+    this.flag = true;
+    this.formpostService.sendPhoneNo(this.registerForm.value.phno)
+    .subscribe((data)=>{
+      console.log(data);
+    });
   }
 
   onValueChanged(data?: any) {
@@ -136,7 +163,7 @@ export class RegisterComponent implements OnInit {
 }
 
 createForm() {
-  this.flag = '';
+  this.flag = false;
   this.registerForm = this.reg.group({
     firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
     lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],

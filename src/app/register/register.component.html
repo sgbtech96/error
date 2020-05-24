@@ -71,6 +71,8 @@
       <input matInput formControlName="otp" placeholder="Enter OTP" type="password" required>
       <mat-error *ngIf="formErrors.otp">{{formErrors.otp}}</mat-error>
     </mat-form-field>
+    <div *ngIf="success">Successfully Registered :)</div>
+    <div *ngIf="failure">Invalid OTP :(</div>
     <button type="submit" mat-button class="background-primary text-floral-white" *ngIf ="flag">Verify OTP</button>
   </form>
 </div>

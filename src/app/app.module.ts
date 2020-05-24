@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon'; 
+import { MatMenuModule } from '@angular/material/menu';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -77,7 +79,9 @@ import { RegisterComponent } from './register/register.component';
     MatSliderModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatMenuModule,
+    MatIconModule
   ],
   entryComponents: [
     LoginComponent,
