@@ -43,12 +43,15 @@ export class FormpostService {
       })
     };
     const obj = {
+      "name": data.firstname + " " + data.lastname,
       "userName": data.username,
       "password": data.password,
-      "level": "1",
       "phone": data.phno,
       "class": data.grade,
-      "board": data.board
+      "board": data.board,
+      "email": data.email,
+      "state": data.state,
+      "city": data.city
     }
     console.log(obj);
     return this.http.post<any>("https://education4all.herokuapp.com/register", obj, httpOptions);
@@ -59,12 +62,8 @@ export class FormpostService {
         'Content-Type':  'application/json'
       })
     };
-    const obj = {
-      "userName": data.username,
-      "password": data.password,
-      "level": "1"
-    };
-    return this.http.post<any>("https://education4all.herokuapp.com/login", obj, httpOptions);
+    console.log(data);
+    return this.http.post<any>("https://education4all.herokuapp.com/login", data, httpOptions);
   };
   
   show(): Observable<any>{

@@ -9,7 +9,7 @@ import { FormpostService } from '../services/formpost.service';
 })
 export class LoginComponent implements OnInit {
 
-  user = {username: '', password: ''};
+  user = {phone: '', password: ''};
   constructor(public dialogRef: MatDialogRef<LoginComponent>, public formpostService: FormpostService) { }
 
   ngOnInit() {
