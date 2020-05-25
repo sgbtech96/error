@@ -18,6 +18,10 @@ export class ProfileComponent implements OnInit {
         console.log(data);
       }
     )
+    // this.formpostService.getImage().subscribe(
+    //   data => {
+    //     console.log(data);
+    //   }
+    // )
   }
-
 }

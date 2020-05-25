@@ -73,8 +73,16 @@ export class FormpostService {
         'authorization': 'Bearer ' + localStorage.token
       })
     };
-
     return this.http.get<any>("https://education4all.herokuapp.com/showUser", httpOptions);
   };
 
-}
+  // getImage(): Observable<any>{
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':  'application/json',
+  //       'authorization': 'Bearer ' + localStorage.token
+  //     })
+  //   };
+  //   return this.http.get<any>("https://education-files.herokuapp.com/image", httpOptions);
+  // }
+};
