@@ -95,6 +95,24 @@ export class FormpostService {
     );
   }
 
+  sendImage(img: File): Observable<any> {
+    const obj = {
+      file: img
+    }
+    console.log(img)
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "multipart/form-data",
+        "authorization": "Bearer " + localStorage.token,
+        'Accept': 'application/json'
+      }),
+    };
+    return this.http.post<any>(
+      "https://education-files.herokuapp.com/upload", obj,
+      httpOptions
+    );
+  }
+
   // getImage(): Observable<any>{
   //   const httpOptions = {
   //     headers: new HttpHeaders({

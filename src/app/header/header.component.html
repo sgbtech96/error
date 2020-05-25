@@ -1,41 +1,86 @@
 <mat-toolbar color="primary">
-  <span><img src="/assets/images/logo.png" height=30 width=41></span>
-  <a mat-button routerLink='/home' routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
-  <a mat-button routerLink='/aboutus' routerLinkActive="active"><span class="fa fa-info fa-lg"></span> About</a>
-  <a mat-button routerLink='/menu' routerLinkActive="active"><span class="fa fa-list fa-lg"></span> Menu</a>
-  <a mat-button routerLink='/contactus' routerLinkActive="active"><span class="fa fa-address-card fa-lg"></span> Contact</a>
+  <span><img src="/assets/images/logo.png" height="30" width="41" /></span>
+  <a mat-button routerLink="/home" routerLinkActive="active"
+    ><span class="fa fa-home fa-lg"></span> Home</a
+  >
+  <a mat-button routerLink="/aboutus" routerLinkActive="active"
+    ><span class="fa fa-info fa-lg"></span> About</a
+  >
+  <a mat-button routerLink="/menu" routerLinkActive="active"
+    ><span class="fa fa-list fa-lg"></span> Menu</a
+  >
+  <a mat-button routerLink="/contactus" routerLinkActive="active"
+    ><span class="fa fa-address-card fa-lg"></span> Contact</a
+  >
   <span class="flex-spacer"></span>
   <div *ngIf="!isLogged">
-    <a mat-button (click)="openLoginForm()"><span class="fa fa-sign-in fa-lg"></span> Login</a> 
-    <a mat-button (click)="openRegisterForm()"><span class="fa fa-sign-in fa-lg"></span> Register</a>
-  </div> 
+    <a mat-button (click)="openLoginForm()"
+      ><span class="fa fa-sign-in fa-lg"></span> Login</a
+    >
+    <a mat-button (click)="openRegisterForm()"
+      ><span class="fa fa-sign-in fa-lg"></span> Register</a
+    >
+  </div>
   <div *ngIf="isLogged">
+    <!-- <label class="image-upload-container btn btn-bwm">
+      <span>Select Image</span>
+      <input #imageInput
+             type="file"
+             accept="image/*"
+             (change)="processFile(imageInput)">
+    </label> -->
+
+    <!-- <form action="https://education-files.herokuapp.com/upload" method="POST" enctype="multipart/form-data">
+      <div class="custom-file mb-3">
+        <input type="file" name="file" id="file" class="custom-file-input">
+        <label for="file" class="custom-file-label">Choose File</label>
+      </div>
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </form> -->
     <button mat-button color="accent" [matMenuTriggerFor]="beforeMenu">
       <mat-icon>account_circle</mat-icon>
     </button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
-      <a mat-button routerLink='/profile' routerLinkActive="active"><span class="fa fa-home fa-lg"></span>My Profile</a>
+      <a mat-menu-item routerLink="/profile"
+        ><span class="fa fa-home fa-lg"></span>My Profile</a
+      >
+      <a mat-menu-item routerLink="/test"
+        ><span class="fa fa-home fa-lg"></span>Take a test</a
+      >
       <button mat-menu-item (click)="logOutUser()">Logout</button>
     </mat-menu>
+    <!-- <form novalidate #imageForm="ngForm" (ngSubmit)="onSubmit()">
+          <mat-form-field>
+            <input type="file" [(ngModel)]="img" name="file" #file="ngModel">
+          </mat-form-field>
+      <mat-dialog-actions>
+        <button type="submit" mat-button class="background-primary text-floral-white">Upload</button>
+      </mat-dialog-actions>
+    </form> -->
   </div>
+  <input type="file" (change)="fileChange($event)" name="file" />
 </mat-toolbar>
 
-<div class="container jumbotron"
-    fxLayout="row"
-    fxLayout.sm="column" 
-    fxLayout.xs="column" 
-    fxLayoutAlign.xs="start center"
-    fxLayoutAlign.sm="start center" 
-    fxLayoutAlign.gt-sm="center center" 
-    fxLayoutGap="10px">
-
+<div
+  class="container jumbotron"
+  fxLayout="row"
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+  fxLayoutAlign.xs="start center"
+  fxLayoutAlign.sm="start center"
+  fxLayoutAlign.gt-sm="center center"
+  fxLayoutGap="10px"
+>
   <div fxFlex fxFlex.gt-sm="50%">
     <h1>Ristorante Con Fusion</h1>
-    <p>We take inspiration from the World's best cuisines, and create a unique fusion experience. Our lipsmacking creations
-      will tickle your culinary senses!</p>
+    <p>
+      We take inspiration from the World's best cuisines, and create a unique
+      fusion experience. Our lipsmacking creations will tickle your culinary
+      senses!
+    </p>
   </div>
   <div fxFlex fxFlex.gt-sm="20%">
-    <img src="/assets/images/logo.png" alt="Logo">
+    <img src="/assets/images/logo.png" alt="Logo" />
   </div>
   <div fxFlex></div>
 </div>

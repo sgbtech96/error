@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseURL } from '../shared/baseurl';
 
 
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -20,6 +21,7 @@ export class RegisterComponent implements OnInit {
 
   newUser: Register;
   registerForm: FormGroup;
+  
   grades = Grade;
   boards = Board;
   errMess: string;
@@ -58,7 +60,7 @@ export class RegisterComponent implements OnInit {
       'maxlength':     'FirstName cannot be more than 25 characters long.',
     },
     'password': {
-      'required':      'User Name is required.',
+      'required':      'Password is required.',
     },
     'email': {
       'required':      'Email is required.',
@@ -88,6 +90,7 @@ export class RegisterComponent implements OnInit {
     },
       errmess => this.errMess = <any>errmess);
   }
+  
 
   onSubmit() {
     this.newUser = this.registerForm.value;
